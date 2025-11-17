@@ -1,0 +1,220 @@
+/* ========================= */
+/*      ESTILOS BASE         */
+/* ========================= */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ========================= */
+/*      PANTALLA DE CARGA    */
+/* ========================= */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #283593;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-out forwards;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    border: 8px solid #ffffff80;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader h2 {
+    margin-top: 20px;
+    color: white;
+    font-weight: 300;
+}
+
+/* Animaciones del loader */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ========================= */
+/*        HEADER             */
+/* ========================= */
+
+.header {
+    text-align: center;
+    padding: 45px 20px;
+    background: #283593;
+    color: white;
+}
+
+.sub {
+    opacity: 0.8;
+}
+
+/* ===================================================== */
+/*    🔵 NUEVO LAYOUT (CENTRADO + PISTAS A LA DERECHA)   */
+/* ===================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+
+    align-items: start;
+}
+
+/* TABLERO CENTRADO CON ANIMACIÓN */
+.board-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+}
+
+/* ========================= */
+/*         TABLERO           */
+/* ========================= */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(15, 32px);
+    grid-template-rows: repeat(15, 32px);
+    gap: 3px;
+
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #28359330;
+    box-shadow: 0px 4px 14px rgba(0,0,0,0.15);
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    background: #dce1ff;
+    border: 1px solid #3f51b5;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cell.active {
+    background: #fff;
+    border: 2px solid #3949ab;
+}
+
+.cell:hover {
+    transform: scale(1.12);
+    background: #eef0ff;
+}
+
+.cell.filled {
+    background: #c5cae9;
+}
+
+/* ========================= */
+/*      PISTAS DERECHA       */
+/* ========================= */
+
+.clues-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #28359320;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    animation: fadeIn 1.2s ease-out;
+}
+
+.clues-section h2 {
+    text-align: center;
+    margin-top: 0;
+    color: #283593;
+}
+
+.clues-section ul {
+    margin-top: 8px;
+    padding-left: 18px;
+}
+
+.clues-section li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .clues-section {
+        margin-top: 20px;
+    }
+}
+
+/* ========================= */
+/* ANIMACIONES EXTRA */
+/* ========================= */
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.slide-right {
+    animation: slideRight 1s ease-out;
+}
+
+.slide-left {
+    animation: slideLeft 1s ease-out;
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes pulseSelect {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}

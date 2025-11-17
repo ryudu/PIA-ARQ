@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79b8bbb4-0533-41b6-999c-9e516a1d7489" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/css/diseño.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/html/inicio.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/animaciones.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/inicio.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ryudu"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ryudu/PIA-ARQ.git",
+    "accountId": "ef9af59e-e66e-4b3f-af8e-de5412b5c6f9"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -43,7 +51,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -85,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763352165880</updated>
-      <workItem from="1763352167091" duration="1950000" />
+      <workItem from="1763352167091" duration="2556000" />
     </task>
     <servers />
   </component>

@@ -66,23 +66,27 @@ body {
     color: white;
 }
 
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
 .sub {
     opacity: 0.8;
+    margin: 10px 0 0 0;
 }
 
 /* ===================================================== */
-/*    🔵 NUEVO LAYOUT (CENTRADO + PISTAS A LA DERECHA)   */
+/*    🔵 LAYOUT (CENTRADO + PISTAS A LA DERECHA)   */
 /* ===================================================== */
 
 .container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
-
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 40px;
-
     align-items: start;
 }
 
@@ -94,24 +98,36 @@ body {
     animation: fadeIn 1s ease-out;
 }
 
+.board-section h2 {
+    color: #283593;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 /* ========================= */
 /*         TABLERO           */
 /* ========================= */
 
-.board {
+#board {
     display: grid;
-    grid-template-columns: repeat(15, 32px);
-    grid-template-rows: repeat(15, 32px);
-    gap: 3px;
-
+    gap: 2px;
     padding: 25px;
     background: #fff;
     border-radius: 12px;
     border: 2px solid #28359330;
     box-shadow: 0px 4px 14px rgba(0,0,0,0.15);
+    justify-content: center;
 }
 
-.cell {
+/* CONTENEDOR DE CELDA CON NÚMERO */
+.cw-wrapper {
+    position: relative;
+    width: 32px;
+    height: 32px;
+}
+
+/* CELDA EDITABLE */
+.cw-cell {
     width: 32px;
     height: 32px;
     background: #dce1ff;
@@ -120,23 +136,64 @@ body {
     text-align: center;
     line-height: 32px;
     font-size: 16px;
+    font-weight: bold;
     text-transform: uppercase;
-
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: all 0.2s ease;
+    cursor: text;
+    box-sizing: border-box;
 }
 
-.cell.active {
+.cw-cell:focus {
+    outline: none;
     background: #fff;
     border: 2px solid #3949ab;
+    transform: scale(1.05);
 }
 
-.cell:hover {
-    transform: scale(1.12);
+.cw-cell:hover {
     background: #eef0ff;
+    transform: scale(1.05);
 }
 
-.cell.filled {
-    background: #c5cae9;
+/* CELDA VACÍA (ESPACIO) */
+.cw-space {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+}
+
+/* NÚMERO DE PISTA */
+.cw-num {
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #283593;
+    z-index: 2;
+}
+
+/* ========================= */
+/*      ESTADOS DE VALIDACIÓN */
+/* ========================= */
+
+.correct {
+    background: #c8e6c9 !important;
+    border-color: #2e7d32 !important;
+    color: #1b5e20;
+}
+
+.maybe {
+    background: #fff9c4 !important;
+    border-color: #f9a825 !important;
+    color: #5d4037;
+}
+
+.wrong {
+    background: #ffcdd2 !important;
+    border-color: #c62828 !important;
+    color: #b71c1c;
+    animation: shake 0.4s ease;
 }
 
 /* ========================= */
@@ -145,11 +202,10 @@ body {
 
 .clues-section {
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
     border: 1px solid #28359320;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-
     animation: fadeIn 1.2s ease-out;
 }
 
@@ -157,34 +213,47 @@ body {
     text-align: center;
     margin-top: 0;
     color: #283593;
+    font-size: 1.8em;
+}
+
+.clues-section h3 {
+    color: #3949ab;
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .clues-section ul {
-    margin-top: 8px;
-    padding-left: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .clues-section li {
-    margin-bottom: 10px;
-    line-height: 1.4;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #3949ab;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+.clues-section li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Pista completada */
+.clues-section li[style*="line-through"] {
+    background: #e8f5e9;
+    border-left-color: #4caf50;
+    color: #2e7d32;
+    font-weight: bold;
 }
 
 /* ========================= */
-/* RESPONSIVE */
-/* ========================= */
-
-@media (max-width: 900px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-
-    .clues-section {
-        margin-top: 20px;
-    }
-}
-
-/* ========================= */
-/* ANIMACIONES EXTRA */
+/*      ANIMACIONES          */
 /* ========================= */
 
 .fade-in {
@@ -213,8 +282,134 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
 @keyframes pulseSelect {
     0% { transform: scale(1); }
     40% { transform: scale(1.12); }
     100% { transform: scale(1); }
+}
+
+/* ========================= */
+/*      VICTORIA             */
+/* ========================= */
+
+.victory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.victory-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.victory-card h2 {
+    color: #283593;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.victory-card p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.victory-button {
+    background: #283593;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.victory-button:hover {
+    background: #1a237e;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .clues-section {
+        margin-top: 0;
+    }
+
+    #board {
+        padding: 15px;
+    }
+
+    .cw-wrapper, .cw-cell, .cw-space {
+        width: 28px;
+        height: 28px;
+    }
+
+    .cw-cell {
+        font-size: 14px;
+        line-height: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 30px 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .cw-wrapper, .cw-cell, .cw-space {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cw-cell {
+        font-size: 12px;
+        line-height: 24px;
+    }
+
+    .cw-num {
+        font-size: 8px;
+        top: -4px;
+        left: 1px;
+    }
+
+    .clues-section {
+        padding: 15px;
+    }
 }

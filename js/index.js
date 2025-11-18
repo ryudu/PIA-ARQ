@@ -250,6 +250,9 @@ function initializeGame() {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('content').classList.remove('hidden');
 
+    // Ocultar botón de reinicio al iniciar
+    hideRestartButton();
+
     // Generar crucigrama
     placed = generateCrossword();
 
@@ -303,9 +306,9 @@ function renderBoard(bbox) {
 
     // Aplicar grid layout
     boardEl.style.display = 'grid';
-    boardEl.style.gridTemplateColumns = `repeat(${cols}, 35px)`;
-    boardEl.style.gridTemplateRows = `repeat(${rows}, 35px)`;
-    boardEl.style.gap = '2px';
+    boardEl.style.gridTemplateColumns = `repeat(${cols}, 32px)`;
+    boardEl.style.gridTemplateRows = `repeat(${rows}, 32px)`;
+    boardEl.style.gap = '3px';
     boardEl.style.justifyContent = 'center';
 
     // Crear lookup para números
@@ -320,21 +323,11 @@ function renderBoard(bbox) {
         for (let c = bbox.minC; c <= bbox.maxC; c++) {
             const wrap = document.createElement('div');
             wrap.className = 'cw-wrapper';
-            wrap.style.position = 'relative';
-            wrap.style.width = '35px';
-            wrap.style.height = '35px';
 
             const key = `${r},${c}`;
             if (grid[r][c] !== null) {
                 const cell = document.createElement('div');
                 cell.className = 'cw-cell';
-                cell.style.cssText = `
-                    width: 35px; height: 35px; background: #e8eaf6; 
-                    border: 1px solid #5c6bc0; display: flex; align-items: center; 
-                    justify-content: center; font-size: 16px; font-weight: bold; 
-                    text-transform: uppercase; cursor: text; box-sizing: border-box;
-                    transition: all 0.2s ease;
-                `;
                 cell.contentEditable = true;
                 cell.dataset.row = r;
                 cell.dataset.col = c;
@@ -347,17 +340,12 @@ function renderBoard(bbox) {
                 if (numberLookup[key]) {
                     const n = document.createElement('div');
                     n.className = 'cw-num';
-                    n.style.cssText = `
-                        position: absolute; top: -2px; left: 1px; 
-                        font-size: 10px; font-weight: 700; color: #283593; z-index: 2;
-                    `;
                     n.textContent = numberLookup[key];
                     wrap.appendChild(n);
                 }
             } else {
                 const space = document.createElement('div');
                 space.className = 'cw-space';
-                space.style.cssText = 'width: 35px; height: 35px; background: transparent;';
                 wrap.appendChild(space);
             }
 
@@ -479,6 +467,8 @@ function onCellInput(e) {
                     clueElement.style.textDecoration = 'line-through';
                     clueElement.style.color = '#2e7d32';
                     clueElement.style.fontWeight = 'bold';
+                    clueElement.style.background = '#e8f5e9';
+                    clueElement.style.borderLeftColor = '#4caf50';
                 }
             }
             anyCompleted = anyCompleted || completed;
@@ -554,85 +544,83 @@ function getCellAt(r, c) {
     return document.querySelector(`.cw-cell[data-row='${r}'][data-col='${c}']`);
 }
 
+/* -----------------------
+   VICTORIA & REINICIO
+   ----------------------- */
+
 function checkVictory() {
     const allCompleted = Object.values(wordsPlaced).every(w => w.completed);
 
     if (allCompleted) {
         setTimeout(() => {
-            const overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
-                background: rgba(0,0,0,0.8); display: flex; align-items: center; 
-                justify-content: center; z-index: 1000;
-            `;
-            overlay.innerHTML = `
-                <div style="background: white; padding: 40px; border-radius: 15px; text-align: center; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <h2 style="color: #283593; font-size: 2.5em; margin-bottom: 20px;">🎉 ¡Felicidades!</h2>
-                    <p style="font-size: 1.2em; margin-bottom: 25px; color: #555;">Has completado correctamente el crucigrama de seguridad informática.</p>
-                    <p style="font-size: 1.1em; margin-bottom: 25px; color: #555;">Todas las ${Object.keys(wordsPlaced).length} palabras han sido resueltas.</p>
-                    <button onclick="this.closest('div').style.display='none'" style="background: #283593; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 1.1em; cursor: pointer;">Continuar</button>
-                </div>
-            `;
-            document.body.appendChild(overlay);
+            showVictoryMessage();
         }, 500);
     }
 }
 
-// Inyectar estilos CSS
-function injectStyles() {
-    const styles = `
-        .cw-cell:focus {
-            outline: none;
-            background: #bbdefb;
-            border-color: #283593;
-        }
-        .correct {
-            background: #c8e6c9 !important;
-            border-color: #2e7d32 !important;
-            color: #1b5e20;
-        }
-        .maybe {
-            background: #fff9c4 !important;
-            border-color: #f9a825 !important;
-            color: #5d4037;
-        }
-        .wrong {
-            background: #ffcdd2 !important;
-            border-color: #c62828 !important;
-            color: #b71c1c;
-        }
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            50% { transform: translateX(3px); }
-            75% { transform: translateX(-3px); }
-            100% { transform: translateX(0); }
-        }
-        .shake {
-            animation: shake 0.4s ease;
-        }
+function showVictoryMessage() {
+    const overlay = document.createElement('div');
+    overlay.className = 'victory-overlay';
+    overlay.innerHTML = `
+        <div class="victory-card">
+            <h2>🎉 ¡Felicidades!</h2>
+            <p>Has completado correctamente el crucigrama de seguridad informática.</p>
+            <p>Todas las ${Object.keys(wordsPlaced).length} palabras han sido resueltas.</p>
+            <div class="victory-buttons">
+                <button class="victory-button" onclick="closeVictoryMessage()">Cerrar</button>
+                <button class="victory-button restart" onclick="restartGame()">Reiniciar Juego</button>
+            </div>
+        </div>
     `;
+    document.body.appendChild(overlay);
 
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = styles;
-    document.head.appendChild(styleSheet);
+    // Mostrar botón de reinicio en la interfaz principal
+    showRestartButton();
 }
 
-/* -----------------------
-   INICIALIZACIÓN
-   ----------------------- */
-document.addEventListener('DOMContentLoaded', function() {
-    injectStyles();
+function closeVictoryMessage() {
+    const overlay = document.querySelector('.victory-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
 
-    // Simular carga (puedes ajustar el tiempo según necesites)
-    setTimeout(() => {
-        initializeGame();
-    }, 1500);
-});
+function showRestartButton() {
+    // Verificar si el botón ya existe
+    let restartBtn = document.getElementById('main-restart-btn');
 
-// Función para reiniciar el juego
-window.restartGame = function() {
-    if (confirm('¿Reiniciar el crucigrama?')) {
+    if (!restartBtn) {
+        // Crear botón de reinicio
+        restartBtn = document.createElement('button');
+        restartBtn.id = 'main-restart-btn';
+        restartBtn.className = 'restart-button';
+        restartBtn.innerHTML = '🔄 Reiniciar Crucigrama';
+        restartBtn.onclick = restartGame;
+
+        // Insertar después del tablero
+        const boardSection = document.querySelector('.board-section');
+        boardSection.appendChild(restartBtn);
+    }
+
+    restartBtn.style.display = 'block';
+}
+
+function hideRestartButton() {
+    const restartBtn = document.getElementById('main-restart-btn');
+    if (restartBtn) {
+        restartBtn.style.display = 'none';
+    }
+}
+
+function restartGame() {
+    if (confirm('¿Estás seguro de que quieres reiniciar el crucigrama? Se perderá tu progreso actual.')) {
+        // Cerrar mensaje de victoria si está abierto
+        closeVictoryMessage();
+
+        // Ocultar botón de reinicio
+        hideRestartButton();
+
+        // Mostrar loader
         document.getElementById('loader').style.display = 'flex';
         document.getElementById('content').classList.add('hidden');
 
@@ -642,10 +630,27 @@ window.restartGame = function() {
             clue.style.textDecoration = '';
             clue.style.color = '';
             clue.style.fontWeight = '';
+            clue.style.background = '';
+            clue.style.borderLeftColor = '';
         });
 
+        // Reiniciar después de un breve delay
         setTimeout(() => {
             initializeGame();
-        }, 500);
+        }, 800);
     }
-};
+}
+
+/* -----------------------
+   INICIALIZACIÓN
+   ----------------------- */
+document.addEventListener('DOMContentLoaded', function() {
+    // Simular carga (puedes ajustar el tiempo según necesites)
+    setTimeout(() => {
+        initializeGame();
+    }, 1500);
+});
+
+// Hacer las funciones accesibles globalmente para los onclick
+window.closeVictoryMessage = closeVictoryMessage;
+window.restartGame = restartGame;

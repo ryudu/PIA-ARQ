@@ -413,3 +413,150 @@ body {
         padding: 15px;
     }
 }
+/* ========================= */
+/*      BOTÓN DE REINICIO    */
+/* ========================= */
+
+.restart-button {
+    display: none;
+    margin: 25px auto 0 auto;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #283593, #3949ab);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(40, 53, 147, 0.3);
+}
+
+.restart-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 53, 147, 0.4);
+    background: linear-gradient(135deg, #3949ab, #283593);
+}
+
+.restart-button:active {
+    transform: translateY(0);
+}
+
+/* ========================= */
+/*      VICTORIA MEJORADA    */
+/* ========================= */
+
+.victory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.victory-card {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.victory-card h2 {
+    color: #283593;
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.victory-card p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.victory-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.victory-button {
+    background: #283593;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.victory-button.restart {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+.victory-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.victory-button:active {
+    transform: translateY(0);
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========================= */
+/*      RESPONSIVE          */
+/* ========================= */
+
+@media (max-width: 600px) {
+    .victory-card {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+
+    .victory-card h2 {
+        font-size: 2.2em;
+    }
+
+    .victory-card p {
+        font-size: 1.1em;
+    }
+
+    .victory-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .victory-button {
+        width: 200px;
+    }
+
+    .restart-button {
+        padding: 12px 24px;
+        font-size: 1em;
+    }
+}

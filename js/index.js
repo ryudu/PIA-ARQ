@@ -253,6 +253,9 @@ function initializeGame() {
     // Ocultar botón de reinicio al iniciar
     hideRestartButton();
 
+    // Configurar el resumen expandible
+    setupSummaryToggle();
+
     // Generar crucigrama
     placed = generateCrossword();
 
@@ -365,6 +368,31 @@ function setupCluesInteractivity() {
             clue.id = `clue-${num}`;
         }
     });
+}
+
+/* -----------------------
+   RESUMEN EXPANDIBLE
+   ----------------------- */
+
+function setupSummaryToggle() {
+    const toggleBtn = document.querySelector('.toggle-summary');
+    const summaryContent = document.querySelector('.summary-content');
+
+    if (toggleBtn && summaryContent) {
+        toggleBtn.addEventListener('click', function() {
+            summaryContent.classList.toggle('collapsed');
+
+            if (summaryContent.classList.contains('collapsed')) {
+                toggleBtn.textContent = 'Mostrar más';
+            } else {
+                toggleBtn.textContent = 'Mostrar menos';
+            }
+        });
+
+        // Iniciar colapsado
+        summaryContent.classList.add('collapsed');
+        toggleBtn.textContent = 'Mostrar más';
+    }
 }
 
 /* -----------------------
@@ -645,7 +673,7 @@ function restartGame() {
    INICIALIZACIÓN
    ----------------------- */
 document.addEventListener('DOMContentLoaded', function() {
-    // Simular carga (puedes ajustar el tiempo según necesites)
+    // Simular carga
     setTimeout(() => {
         initializeGame();
     }, 1500);

@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79b8bbb4-0533-41b6-999c-9e516a1d7489" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/diseño.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/diseño.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/inicio.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -96,7 +98,9 @@
       <option name="presentableId" value="Default" />
       <updated>1763352165880</updated>
       <workItem from="1763352167091" duration="3742000" />
-      <workItem from="1763434229977" duration="6374000" />
+      <workItem from="1763434229977" duration="8369000" />
+      <workItem from="1763480810183" duration="61000" />
+      <workItem from="1763687263452" duration="890000" />
     </task>
     <servers />
   </component>

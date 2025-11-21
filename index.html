@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crucigrama de Seguridad Informática</title>
+    <link rel="stylesheet" href="css/diseño.css">
+</head>
+
+<body>
+
+<!-- PANTALLA DE CARGA -->
+<div id="loader" class="loader">
+    <div class="spinner"></div>
+    <h2>Cargando crucigrama...</h2>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div id="content" class="hidden">
+
+    <header class="header fade-in">
+        <h1>Crucigrama de Arquitectura de Computadoras</h1>
+        <p class="sub">Equipo 4 • Unidad 1 a la 5 • PIA</p>
+    </header>
+
+    <!-- SECCIÓN DE RESUMEN -->
+    <section class="summary-section fade-in">
+        <div class="summary-container">
+            <h2>Resumen para Resolver el Crucigrama</h2>
+            <div class="summary-content">
+                <p>En las organizaciones modernas, la continuidad operativa y la protección de la información
+                    se han convertido en temas fundamentales. Para garantizar que los sistemas funcionen sin
+                    interrupciones, muchas empresas cuentan con instalaciones diseñadas exclusivamente para
+                    resguardar servidores, dispositivos de red y plataformas tecnológicas que sostienen
+                    operaciones esenciales. Estos espacios concentran infraestructura crítica que necesita
+                    mantenerse en un entorno controlado con seguridad física, acceso restringido y condiciones
+                    precisas de temperatura, ventilación y energía.</p>
+
+                <p>Uno de los retos más importantes en la administración tecnológica es determinar cuánto
+                    tiempo puede una organización tolerar la pérdida de información en caso de un incidente
+                    grave. Establecer ese límite permite definir políticas de respaldo adecuadas y seleccionar
+                    mecanismos para recuperar datos sin afectar de manera significativa las actividades. Junto
+                    con este factor, también es necesario estimar el tiempo máximo durante el cual un sistema
+                    puede permanecer inactivo después de un evento disruptivo, ya que este periodo influye
+                    directamente en la estrategia de recuperación y en las inversiones que se deben realizar para
+                    prevenir daños mayores.</p>
+
+                <p>La seguridad informática exige cumplir con varios principios esenciales. Uno de ellos es
+                    asegurar que la información no sea modificada de manera indebida, protegiendo los datos
+                    para que se mantengan correctos y confiables. Otro principio es garantizar que solo las
+                    personas autorizadas puedan acceder a los recursos, evitando filtraciones que puedan
+                    comprometer información sensible. Estos aspectos se refuerzan mediante herramientas
+                    tecnológicas capaces de vigilar, filtrar y controlar el flujo de información entre redes,
+                    bloqueando intentos de intrusión o accesos no aprobados que puedan poner en riesgo la
+                    confidencialidad.</p>
+
+                <p>Con el incremento de amenazas digitales, se ha vuelto indispensable implementar
+                    mecanismos de respaldo que permitan recuperar información ante pérdidas, ataques
+                    maliciosos o fallos técnicos. Las copias pueden almacenarse en distintos medios,
+                    incluyendo sistemas pensados para conservar grandes volúmenes de datos por largos
+                    periodos, particularmente útiles para la preservación histórica o los archivos corporativos.
+                    Como medida adicional, es recomendable mantener parte de los respaldos en sitios aislados
+                    para impedir que sean alcanzados por ataques o eventos que afecten simultáneamente a la
+                    infraestructura principal.</p>
+
+                <p>La posibilidad de que un ataque logre cifrar archivos y exigir un pago para liberarlos ha
+                    obligado a muchas organizaciones a fortalecer sus estrategias preventivas. Una de las
+                    técnicas más utilizadas consiste en duplicar componentes, equipos o sistemas completos,
+                    de modo que, si una parte falla, la operación pueda continuar sin interrupciones. A esto se
+                    suma la necesidad de contar con un sistema capaz de proveer energía temporal cuando
+                    ocurre un corte eléctricco, manteniendo en funcionamiento los equipos lo suficiente para
+                    evitar daños o pérdidas en los procesos.</p>
+
+                <p>Otro elemento clave en la gestión de la continuidad operativa es la preparación del personal.
+                    Las organizaciones deben desarrollar procedimientos claros que indiquen cómo responder
+                    ante emergencias o desastres y realizar ejercicios prácticos que simulen situaciones reales.
+                    Estas prácticas permiten evaluar la efectividad de los planes, corregir errores, capacitar al
+                    personal y asegurar una respuesta rápida ante cualquier eventualidad que pueda amenazar el
+                    funcionamiento de los servicios.</p>
+
+                <p>En conjunto, todas estas medidas forman una red integral de prevención, protección y
+                    recuperación. Las organizaciones que entienden la importancia de estos elementos pueden
+                    anticipar problemas, reducir el impacto de los incidentes y asegurar que sus operaciones
+                    continúen incluso ante los desafíos más complejos. Este enfoque no solo fortalece la
+                    seguridad, sino que también aumenta la resiliencia y la confianza en la infraestructura
+                    tecnológica que sostiene sus operaciones diarias.</p>
+            </div>
+            <button class="toggle-summary">Mostrar menos</button>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <!-- SECCIÓN DEL TABLERO -->
+        <section class="board-section slide-right">
+            <h2>Crucigrama</h2>
+            <div id="board" class="board"></div>
+        </section>
+
+        <!-- SECCIÓN DE PISTAS -->
+        <section class="clues-section slide-left">
+
+            <h2>Pistas</h2>
+
+            <!-- HORIZONTALES -->
+            <h3>Horizontal</h3>
+            <ul>
+                <li><strong>5.</strong> Cantidad máxima de datos (medida en tiempo) que una organización puede permitirse perder.</li>
+
+                <li><strong>7.</strong> Duplicación de sistemas o componentes para asegurar la continuidad del servicio ante una falla.</li>
+
+                <li><strong>10.</strong> Ejercicio práctico para entrenar la respuesta ante emergencias.</li>
+
+                <li><strong>14.</strong> Tipo de malware que cifra los archivos y exige un rescate para recuperarlos.</li>
+
+                <li><strong>15.</strong> Sistema de alimentación ininterrumpida que proporciona energía temporal durante un apagón.</li>
+            </ul>
+
+            <!-- VERTICALES -->
+            <h3>Vertical</h3>
+            <ul>
+                <li><strong>1.</strong> Instalación que alberga servidores y sistemas críticos para el funcionamiento de una organización.</li>
+
+                <li><strong>2.</strong> Propiedad que garantiza que los datos no sean alterados o corrompidos.</li>
+
+                <li><strong>3.</strong> Dispositivo o software que controla el tráfico entre redes y bloquea accesos no autorizados.</li>
+
+                <li><strong>4.</strong> Tiempo máximo aceptable en el que un sistema puede estar inactivo tras un desastre.</li>
+
+                <li><strong>6.</strong> Principio que asegura que la información solo sea accesible por personas autorizadas.</li>
+
+                <li><strong>8.</strong> Capacidad de un sistema para estar accesible cuando se necesita.</li>
+
+                <li><strong>9.</strong> Plan de acción diseñado para responder ante emergencias o desastres.</li>
+
+                <li><strong>11.</strong> Tecnología de cintas magnéticas utilizada para almacenamiento masivo y de largo plazo.</li>
+
+                <li><strong>12.</strong> Aislamiento físico de los respaldos para evitar que sean afectados por ataques cibernéticos.</li>
+
+                <li><strong>13.</strong> Copia de seguridad que permite recuperar datos en caso de pérdida o daño de la información original.</li>
+            </ul>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/index.js"></script>
+<script src="js/animaciones.js"></script>
+</body>
+</html>
